@@ -3,9 +3,13 @@
     <q-card style="width: 60%;" class=" q-pa-md">
       <q-select
         v-model="selectedCity"
-        :options="cities"
+        :options="filteredCities"
         option-label="name"
         label="Escolha uma cidade"
+        use-input
+        fill-input
+        input-debounce="300"
+        @filter="filterCities"
         class="col-8"
       />
 
@@ -78,6 +82,22 @@ const searchHotels = async () => {
   page.value = 1;
 };
 
+const filteredCities = ref<City[]>([]);
+
+const filterCities = (val: string, update: (callback: () => void) => void) => {
+  update(() => {
+    if (val === '') {
+      filteredCities.value = cities.value;
+    } else {
+      const search = val.toLowerCase();
+      filteredCities.value = cities.value.filter(city =>
+        city.name.toLowerCase().includes(search)
+      );
+    }
+  });
+};
+
+
 
 const loadMore = () => {
   const start = page.value * 10;
@@ -100,7 +120,9 @@ const applyFilter = () => {
 
 onMounted(async () => {
   cities.value = await DataService.fetchCities();
+  filteredCities.value = cities.value;
 });
+
 </script>
 
 <style scoped>
