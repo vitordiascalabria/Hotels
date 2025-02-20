@@ -11,7 +11,6 @@
             v-model="currentSlide"
             animated
             infinite
-            arrows
             control-color="primary"
             class="carousel"
           >
