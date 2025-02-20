@@ -25,7 +25,7 @@ describe('HotelCard.vue', () => {
   });
 
   const hotelSemImagens = new Hotel({
-    placeId: 101, // Adicione a propriedade placeId
+    placeId: 101,
     id: 1,
     name: 'Hotel Luxuoso',
     description: 'Um hotel luxuoso para testes.',

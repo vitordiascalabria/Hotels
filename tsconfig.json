@@ -1,6 +1,11 @@
 {
-  "extends": "./.quasar/tsconfig.json",
+  "extends": "./.quasar/tsconfig.json",  
   "compilerOptions": {
-    "types": ["vitest/globals"]
+    "types": [
+      "node",
+      "jest", 
+      "@vue/test-utils"
+    ]
   }
+
 }
